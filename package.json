@@ -1,11 +1,11 @@
 {
-    "title": "SB Admin 2",
-    "name": "startbootstrap-sb-admin-2",
-    "version": "4.0.7",
+    "title": "Cosmetric",
+    "name": "senior-design-2020",
+    "version": "0.0.1",
     "scripts": {
         "start": "node_modules/.bin/gulp watch"
     },
-    "description": "An open source Bootstrap 4 admin theme.",
+    "description": "A platfrom for IoT manufacturing.",
     "keywords": [
         "css",
         "sass",
@@ -16,19 +16,19 @@
         "admin",
         "app"
     ],
-    "homepage": "https://startbootstrap.com/template-overviews/sb-admin-2",
+    "homepage": "https://github.com/Henri93/Senior-Design-2020",
     "bugs": {
-        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin-2/issues",
-        "email": "feedback@startbootstrap.com"
+        "url": "https://github.com/Henri93/Senior-Design-2020/issues",
+        "email": "henrygar@seas.upenn.edu"
     },
     "license": "MIT",
-    "author": "Start Bootstrap",
+    "author": "Henry Garant",
     "contributors": [
         "David Miller (http://davidmiller.io/)"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/BlackrockDigital/startbootstrap-sb-admin-2.git"
+        "url": "https://github.com/Henri93/Senior-Design-2020.git"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "5.10.2",
