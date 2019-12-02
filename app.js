@@ -38,6 +38,7 @@ chat.on('connection', (socket) => {
 	
 	socket.on('order_data', (data) => {
 		console.log("got order data: "+ JSON.stringify(data));
+		chat.emit('order_data', data);
 	});
 });
 
