@@ -9,6 +9,9 @@ var morgan = require('morgan');
 var routes = require('./routes/routes.js');
 var session = require('express-session');
 var mongoose = require('mongoose');
+
+var apiRoutes = require('./routes/api.js')
+
 var app = express();
 
 mongoose.connect(
@@ -34,6 +37,8 @@ app.get('/', routes.get_main);
 
 //Orders
 app.get('/orders', routes.get_orders);
+
+app.use('/api', apiRoutes);
 
 /* ---END ROUTES--- */
 
