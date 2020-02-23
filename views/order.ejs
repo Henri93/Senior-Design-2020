@@ -57,7 +57,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link" href="/orders">
+        <a class="nav-link">
           <i class="fas fa-fw fa-table"></i>
           <span>Orders</span></a>
       </li>
@@ -71,7 +71,7 @@
       </div>
 
       <li class="nav-item">
-        <a class="nav-link" href="ingredients.html">
+        <a class="nav-link" href="/ingredients">
           <i class="fas fa-fw fa-flask"></i>
           <span>Ingredients</span></a>
       </li>
@@ -202,10 +202,24 @@
             <h1 class="h3 mb-0 text-gray-800">Order #<%= orderId%></h1>
             <% } %>
             
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <a href="#" id="runOrderBtn" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-play fa-sm text-white-80"></i>  Run Order</a>
           </div>
 
           <!-- Content Row -->
+          <div class="row">
+            
+                  
+            <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputCommand" class="sr-only" id="command"></label>
+              <input class="form-control" id="inputCommand" placeholder="Command">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" id="inputCommandBtn">Send</button>
+          </form>
+          
+          </div>
+
+
           <div class="row">
 
             <!-- Time Elapsed Card -->

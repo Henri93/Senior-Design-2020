@@ -1,8 +1,17 @@
+var Pumps = require('../models/pump.js')
+
 /*
  * Route for main dashboard
  */
-var getMain = function(req, res) {
-  res.render('index.ejs', {});
+var getMain = function(req, res, next) {
+  Pumps.find({}, function(err, result) {
+    if (err) {
+      return next(err)
+    }
+    res.render('index.ejs', {
+      pumps: result
+    })
+  });
 };
 
 /*

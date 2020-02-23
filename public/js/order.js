@@ -6,7 +6,8 @@ var myPieChart;
 var interval;
 
 $(function(){
-	var socket = io.connect('http://localhost:8080/order');
+	//var socket = io.connect('http://10.103.126.250:3000/order');
+	var socket = io.connect('http://10.103.117.106:3000');
 
 	/*------SOCKET EVENTS*------*/
 	socket.on('order_data', (data) =>{
@@ -14,12 +15,12 @@ $(function(){
 		displayOrderData(data);
 	});
 
-	var count = 0;
-	interval = setInterval(function() {
-   		// method to be executed;
-   		sendOrderData(socket, count);
-   		count++;
- 	}, 3000);
+	// var count = 0;
+	// interval = setInterval(function() {
+ //   		// method to be executed;
+ //   		sendOrderData(socket, count);
+ //   		count++;
+ // 	}, 3000);
 
  	ctx = document.getElementById("myPieChart");
 	myPieChart = new Chart(ctx, {
@@ -50,6 +51,24 @@ $(function(){
 	    },
 	    cutoutPercentage: 80,
 	  },
+	});
+
+	$("form").submit(function(e){
+        e.preventDefault();
+    });
+
+	$("#inputCommandBtn").click(function() {
+		var command = $("#inputCommand").val();
+		var parts = command.split("(");
+		if(parts[0] === "run_finite_with_accel"){
+			var parts2 = parts[1].split(")");
+			var args = parts2[0].split(",");
+			socket.emit('send_command_finite_accel', {timestamp: Date.now(), command: command, args: args});
+		}
+	});
+
+	$("#runOrderBtn").click(function() {
+		alert("Running order");
 	});
 });
 
@@ -97,7 +116,7 @@ function displayOrderData(data){
 
 }
 
-function updateData(chart, label, data) {
+function updateData(chart, label, data) { 
     chart.data.datasets.forEach((dataset) => {
     	if(label == "Complete"){
     		dataset.data[0] = data;
