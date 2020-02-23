@@ -1,4 +1,5 @@
 var Pumps = require('../models/pump.js')
+var Order = require('../models/order.js')
 
 /*
  * Route for main dashboard
@@ -12,6 +13,28 @@ var getMain = function(req, res, next) {
       pumps: result
     })
   });
+  // var ingredientsMap = {};
+
+  // ingredientsMap["Citric Acid"] = 7
+  // ingredientsMap["Ivy Extract"] = 17
+  // ingredientsMap["Acai Oil"] = 22
+
+  // var o = new Order({
+  //   uuid: "e4ab7",
+  //   ingredients: ingredientsMap,
+  //   completed: false,
+  //   receivedTime: new Date,
+  //   completedTime: new Date
+  // })
+  // o.save(function(err) {
+  //   if (!err) {
+  //     res.json({
+  //       success: 'OK'
+  //     })
+  //   } else {
+  //     next(err)
+  //   }
+  // })
 };
 
 /*

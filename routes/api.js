@@ -12,6 +12,15 @@ router.get('/pumps', function(_, res, next) {
   })
 })
 
+router.get('/orders', function(_, res, next) {
+  Order.find({}, function(err, result) {
+    if (err) {
+      return next(err)
+    }
+    res.json(result)
+  }).sort({ receivedTime: -1 })
+})
+
 router.get('/completedOrders', function(_, res, next) {
   Order.find({'completed': true}, function(err, result) {
     if (err) {
