@@ -5,6 +5,19 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 
 $(document).ready(function() {
+  var socket = io.connect('http://localhost:3000');
+
+  /*------SOCKET EVENTS*------*/
+  socket.on('hub_connect', (data) =>{
+    var curPumps = parseInt($('#totalPumpNum').html())
+    $('#totalPumpNum').html(curPumps + data['pumps'].length)
+  });
+
+  socket.on('hub_disconnect', (data) =>{
+    var curPumps = parseInt($('#totalPumpNum').html())
+    $('#totalPumpNum').html(curPumps - data['pumps'].length)
+  });
+
   var pumps = []
   var completedOrders = []
   var openPumps = 0
@@ -21,6 +34,7 @@ $(document).ready(function() {
       type: 'GET',
       success: function(res) {
         pumps = res
+        console.log(pumps)
         $('#totalPumpNum').html(pumps.length)
       },
     })
@@ -74,9 +88,8 @@ $(document).ready(function() {
         legend: {
           display: false
         },
-        cutoutPercentage: openPumps / (openPumps + runningPumps),
+        cutoutPercentage: 80,
       },
     });
   }
-
 })

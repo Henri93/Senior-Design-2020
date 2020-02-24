@@ -11001,3 +11001,7 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.card-header h6 {
+  color: #5a5c69;
+}

@@ -14,13 +14,12 @@ var getMain = function(req, res, next) {
     })
   });
   // var ingredientsMap = {};
-
-  // ingredientsMap["Citric Acid"] = 7
-  // ingredientsMap["Ivy Extract"] = 17
-  // ingredientsMap["Acai Oil"] = 22
+  // ingredientsMap["Citric Acid"] = "{\"dispensed\": 1, \"total\": 2}"
+  // ingredientsMap["Ivy Extract"] = "{\"dispensed\": 1, \"total\": 1}"
+  // ingredientsMap["Acai Oil"] = "{\"dispensed\": 2, \"total\": 4}"
 
   // var o = new Order({
-  //   uuid: "e4ab7",
+  //   uuid: "0ffff",
   //   ingredients: ingredientsMap,
   //   completed: false,
   //   receivedTime: new Date,
@@ -34,6 +33,12 @@ var getMain = function(req, res, next) {
   //   } else {
   //     next(err)
   //   }
+  // })
+  // Order.remove({'uuid': 'e4ab7'}, function(err, result) {
+  //   if (err) {
+  //     return next(err)
+  //   }
+  //   res.json(result)
   // })
 };
 

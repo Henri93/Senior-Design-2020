@@ -8,7 +8,7 @@ var orderSchema = new mongoose.Schema({
   },
   ingredients: {
     type: Map,
-    of: Number   //map of ingredient name to ml amount
+    of: String   //map of ingredient name to object {dispensed, total ml amount}
   },
   completed: Boolean,
   receivedTime: Date,

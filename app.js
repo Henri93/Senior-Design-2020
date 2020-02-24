@@ -7,6 +7,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var routes = require('./routes/routes.js');
+var sockets = require('./routes/sockets.js');
 var session = require('express-session');
 var mongoose = require('mongoose');
 
@@ -26,9 +27,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('combined'));
 app.use(express.static(__dirname + '/public'));
 app.use(session({secret: 'com.henrygar.sd'}));
-
-var open_pumps = [];
-var used_pumps = [];
 
 /* ---ROUTES--- */
 
@@ -71,10 +69,12 @@ const io = require('socket.io')(server);
 io.on('connection', (socket) => {
 	console.log("New device connected!\n");
 
-	socket.on('pump_connect', (data) => {
-		console.log("pump connected: " + JSON.stringify(data));
-		open_pumps.push[data[pump]];
-		io.emit('pump_connect', data);
+	socket.on('hub_connect', (data) => {
+		sockets.hub_connect(io, data);
+	});
+
+	socket.on('hub_disconnect', (data) => {
+		sockets.hub_disconnect(io, data);
 	});
 	
 	socket.on('order_data', (data) => {
@@ -83,30 +83,12 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('run_order', (data) => {
-		if(open_pumps.length > 0){
-			let pump = open_pumps.pop();
-			used_pumps.push(pump);
-			//inject pump data
-			data[pump] = pump;
-			console.log("using pump: " + JSON.stringify(data));
-			io.emit('run_order', data);
-		}else{
-			console.log("no pumps ready");
-		}	
+		// console.log("run order data: " + JSON.stringify(data));
+		io.emit('run_order', data);
 	});
 
 	socket.on('finish_order', (data) => {
-		if(used_pumps.length > 0){
-			let pump = used_pumps.pop();
-			open_pumps.push(pump);
-			
-			//inject pump data
-			data[pump] = pump;
-			console.log("free pump: " + JSON.stringify(data));
-			io.emit('finish_order', data);
-		}else{
-			console.log("no pumps being used");
-		}	
+		io.emit('finish_order', data);	
 	});
 
 	socket.on('send_command_finite_accel', (data) => {

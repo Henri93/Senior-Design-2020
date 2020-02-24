@@ -1,6 +1,6 @@
 /* global $ */
 $(document).ready(function() {
-
+  
   var orders = []
   
   getOrders()
@@ -19,7 +19,7 @@ $(document).ready(function() {
           
           var ingredientsList = ""
           $.each(orders[i].ingredients, function( key, value ) {
-            ingredientsList = ingredientsList.concat(key + " " + value + "ML<br/>");
+            ingredientsList = ingredientsList.concat(key + " " + JSON.parse(value).total + "ML<br/>");
           });
           dataInfo.push(ingredientsList)
 

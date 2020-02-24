@@ -57,7 +57,7 @@
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link">
+        <a class="nav-link" href="/orders">
           <i class="fas fa-fw fa-table"></i>
           <span>Orders</span></a>
       </li>
@@ -199,17 +199,27 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <%if (orderId != null) { %>
+            <div id="orderId" style="display: none;"><%= orderId%></div>
             <h1 class="h3 mb-0 text-gray-800">Order #<%= orderId%></h1>
             <% } %>
             
-            <a href="#" id="runOrderBtn" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-play fa-sm text-white-80"></i>  Run Order</a>
+            
           </div>
 
-          <!-- Content Row -->
+          <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                  <a href="#" id="runOrderBtn" class="d-none d-sm-inline-block btn btn-md btn-success shadow-sm">
+                    <i class="fas fa-play fa-sm text-white-80"></i>
+                      Run Order</a>
+            </div>
+
+          </div>
+
+          <!-- Command Input 
           <div class="row">
             
                   
-            <form class="form-inline">
+          <form class="form-inline">
             <div class="form-group mx-sm-3 mb-2">
               <label for="inputCommand" class="sr-only" id="command"></label>
               <input class="form-control" id="inputCommand" placeholder="Command">
@@ -217,7 +227,7 @@
             <button type="submit" class="btn btn-primary mb-2" id="inputCommandBtn">Send</button>
           </form>
           
-          </div>
+          </div>-->
 
 
           <div class="row">
@@ -249,27 +259,12 @@
                <!-- Project Card Example -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Ingredients Dispensed</h6>
+                  <h6 class="m-0 font-weight-bold">Ingredients Dispensed</h6>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="ingredientsContainer">
 
-                  <!-- Ingredient 1 -->
-                  <h4 class="small font-weight-bold">Citric Acid <span id="CitricAcidHeader" class="float-right">0ML of 7ML</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-danger" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="CitricAcid"></div>
-                  </div>
-
-                  <!-- Ingredient 2 -->
-                  <h4 class="small font-weight-bold">Ivy Extract <span id="IvyExtractHeader" class="float-right">0ML of 17ML</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="IvyExtract"></div>
-                  </div>
-
-                  <!-- Ingredient 3 -->
-                  <h4 class="small font-weight-bold">Acai Oil <span id="AcaiOilHeader" class="float-right">0ML of 22ML</span></h4>
-                  <div class="progress mb-4">
-                    <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="AcaiOil"></div>
-                  </div>
+                  <!-- Ingredients Populated Here-->
+                
                 </div>
               </div>
             </div>
@@ -280,7 +275,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Order Progress</h6>
+                  <h6 class="m-0 font-weight-bold">Order Progress</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -301,7 +296,7 @@
                   </div>
                   <div class="mt-4 text-center small">
                     <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Complete
+                      <i class="fas fa-circle" style="color: #FDA7DF;"></i> Complete
                     </span>
                     <span class="mr-2">
                       <i class="fas fa-circle text-secondary"></i> Incomplete
@@ -373,7 +368,9 @@
   <script src="/socket.io/socket.io.js"></script>
 
   <!-- Page level custom scripts -->
+  <script src="js/test.js"></script>
   <script src="js/order.js"></script>
+
 
 </body>
 

@@ -12,6 +12,15 @@ router.get('/pumps', function(_, res, next) {
   })
 })
 
+router.get('/openPumps', function(_, res, next) {
+  Pump.find({isRunning: false}, function(err, result) {
+    if (err) {
+      return next(err)
+    }
+    res.json(result)
+  })
+})
+
 router.get('/orders', function(_, res, next) {
   Order.find({}, function(err, result) {
     if (err) {
@@ -23,6 +32,15 @@ router.get('/orders', function(_, res, next) {
 
 router.get('/completedOrders', function(_, res, next) {
   Order.find({'completed': true}, function(err, result) {
+    if (err) {
+      return next(err)
+    }
+    res.json(result)
+  })
+})
+
+router.get('/order', function(req, res, next) {
+  Order.find({uuid: req.query.orderId}, function(err, result) {
     if (err) {
       return next(err)
     }
